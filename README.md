@@ -96,7 +96,7 @@ par(mfrow=c(1,1))
 > Users can reduce the data size around the field boundaries. Function **`cropField`**. 
 
 ```r
-# "Select 4 points around of polygon (1) in the plots space."
+# "Use cursor to select 4 points around of polygon (1) in the plots window."
 EX1.C<-cropField(field = EX1, nPolygon = 1, nPoint = 4)
 ```
 
