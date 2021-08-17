@@ -1,7 +1,7 @@
 
 ## [cleanRfield](https://github.com/filipematias23/cleanRfield): A tool for cleaning and filtering data spatial points from crop yield maps in [R](https://www.r-project.org).
 
-> This package is a compilation of functions to clean and filter observations from yield monitors or other agricultural spatial point data. Yield monitors are prone to error, and filtering the observations or removing observations from near field boundaries can improve estimates of whole-field yield, combine speed, grain moisture, or other parameters. In this package, users can easily select filters tresholding for one or more traits and prepare a smaller dataset to make decisions.
+> This package is a compilation of functions to clean and filter observations from yield monitors or other agricultural spatial point data. Yield monitors are prone to error, and filtering the observations or removing observations from near field boundaries can improve estimates of whole-field yield, combine speed, grain moisture, or other parameters. In this package, users can easily select filters thresholding for one or more traits and prepare a smaller dataset to make decisions.
 
 > This tutorial assumes that readers have a basic understanding of spatial data, including projections and coordinate reference systems. If you need a refresher on this topic, we recommend reading [this quick blog post for deciding between projected and unprojected data](https://spatiallychallenged.com/2018/11/01/selecting-a-projection-for-spatial-analysis/) and [this post for understanding the basics of coordinate reference systems](https://spatiallychallenged.com/2018/11/05/epsg-numbers-and-coordinate-reference-systems/). 
 
@@ -60,7 +60,7 @@ library(rgdal)
 library(cleanRfield)
 ```
 
-> Start this tutorial by downloading the example EX1 [here](https://drive.google.com/file/d/1FTdbrp-_SE81vUoQv4wBsqVGqkUUUaPR/view?usp=sharing) and the field boundary [here](https://drive.google.com/file/d/1pP41HiG2RxF7HOu_5fdj6Pg9DoTaLPcy/view?usp=sharing). Use the function *`readOGR()`* from package **rgdal** to read and upload the data to RStudio. 
+> Start this tutorial by downloading the example EX1 [here](https://drive.google.com/file/d/1FTdbrp-_SE81vUoQv4wBsqVGqkUUUaPR/view?usp=sharing) and the field boundary [here](https://drive.google.com/file/d/1pP41HiG2RxF7HOu_5fdj6Pg9DoTaLPcy/view?usp=sharing). This tutorial will use the function *`readOGR()`* from package **rgdal** to read and upload the data to RStudio (see provided code). 
 
 > EX1 is a yield map from a soybean field, stored as a point shapefile. Yield monitor observations were originally collected in the north-central US using a combine yield monitor, and observations were geographically shifted to protect the landowner’s privacy. This data set include three attributes:
 >   * Speed (miles per hour): speed of the combine at the time the observation was recorded
