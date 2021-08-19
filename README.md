@@ -26,6 +26,7 @@
    * [8. Filtering using standard deviation values](#P8)
    * [9. Evaluating multiple fields on parallel](#P9)
    * [10. Saving files](#P10)
+   * [11. Working with .csv or .txt files](#P11)
    * [Contact](#PC)
 
 <div id="Instal" />
@@ -634,6 +635,16 @@ writeOGR(EX1.B$newShape, ".", "EX1.newShape", driver="ESRI Shapefile")
 EX1.newShape <- readOGR("EX1.newShape.shp") # Reading the saved shapefile.
 
 ```
+[Menu](#menu)
+
+<div id="P11" />
+
+---------------------------------------------
+
+#### 11. Working with .csv and .txt files
+
+> **Reading in the .csv files**
+
 
 [Menu](#menu)
 
