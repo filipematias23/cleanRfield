@@ -643,7 +643,7 @@ EX1.newShape <- readOGR("EX1.newShape.shp") # Reading the saved shapefile.
 
 #### 11. Working with .csv and .txt files
 
-> **Reading in the .csv files**
+> If your data is stored as .csv or other file types, you can still utilizer cleanRfield by reading the data into a data frame in R before converting the data frame to a Spatial Points Data frame. See the example code below and learn more about SpatialPoints in [the documentation for the package sp](https://cran.r-project.org/web/packages/sp/sp.pdf). 
 
 
 [Menu](#menu)
