@@ -6,7 +6,7 @@
 > This tutorial assumes that readers have a basic understanding of spatial data, including projections and coordinate reference systems. If you need a refresher on this topic, we recommend reading [this quick blog post for deciding between projected and unprojected data](https://spatiallychallenged.com/2018/11/01/selecting-a-projection-for-spatial-analysis/) and [this post for understanding the basics of coordinate reference systems](https://spatiallychallenged.com/2018/11/05/epsg-numbers-and-coordinate-reference-systems/). 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filteRfield.jpg" width="70%" height="70%">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/cleanRfield_Logo.jpg" width="70%" height="70%">
 </p>
 
 <div id="menu" />
