@@ -645,6 +645,8 @@ EX1.newShape <- readOGR("EX1.newShape.shp") # Reading the saved shapefile.
 
 > If your data is stored as .csv or other file types, you can still utilizer cleanRfield by reading the data into a data frame in R before converting the data frame to a Spatial Points Data frame. This example uses a .csv file as the data source, but any data frame object in R that has coordinates can be converted to a spatial points data frame using this method regardless of data source file type. This data is in latitude and longitude (unprojected data). You will need to use a different CRS in the proj4string section if your data is projected. See the example code below and learn more about SpatialPoints in [the documentation for the package sp](https://cran.r-project.org/web/packages/sp/sp.pdf). 
 
+Download the example: [EX3.csv](https://drive.google.com/file/d/1lIpsKyU-Xzcd0Hg-j7eo4J14NF4iy0wS/view?usp=sharing)
+
 ```r
 library(rgdal)
 
