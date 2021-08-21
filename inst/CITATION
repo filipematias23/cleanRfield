@@ -1,0 +1,22 @@
+note <- sprintf("R package version %s", meta$Version)
+
+citHeader("The following are references to the package cleanRfield.  You should also reference the individual methods used, as detailed in the reference section of the help files for each function.")
+
+bibentry(bibtype="article",
+  title        = "{cleanRfield}: A tool for cleaning and filtering data spacial points from agricultural field trials in {R}",
+  author       = c(person(c("Filipe", "I."), "Matias"),person(c("", ""), ""),person(c("", ""), "")),
+  journal      = "Crop Science",
+  year         = "2021",
+  pages        = "",
+  url          = ""
+)
+
+bibentry(bibtype="Manual",
+         title = "{cleanRfield}: A tool for cleaning and filtering data spacial points from agricultural field trials in {R}",
+         author = c(person(c("Filipe", "I."), "Matias"),person(c("", ""), ""),person(c("", ""), "")),
+         year         = "",
+         url          = "",
+         note = note
+)
+
+citFooter('To get Bibtex entries use: x<-citation("cleanRfield"); toBibtex(x)')
