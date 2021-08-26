@@ -71,7 +71,7 @@ library(cleanRfield)
 > The field boundary is a shapefile layer with three (3) polygons that delineate the boundaries of the sample field EX1. 
 
 ```r
-### Sample 1 ###
+### Opening Sample Field 1 ###
 
 par(mfrow=c(1,2))
 
