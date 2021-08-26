@@ -94,7 +94,7 @@ par(mfrow=c(1,1))
 ---------------------------------------------
 #### 2. Cropping or selecting targeted field 
 
-> Users can reduce the data size around the field boundaries. Function **`cropField`**. 
+> Users can subset the data by drawing boundaries around a field or subset of fields. Function **`cropField`**. 
 
 ```r
 # "Use cursor to select 4 points around of polygon (1) in the plots window."
