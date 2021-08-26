@@ -305,6 +305,7 @@ plot(EX1.P)
 #### 6. Buffering the field boundaries
 
 > Users can make a buffer around the field boundarys using a new shapefile (**Value must be negative**). Function **`bufferField`**. 
+> Like in section 4, use either the provided code for unprojected data or projected data-- you will not need to run both sets of code. 
 
 * Only shapefile:
 
