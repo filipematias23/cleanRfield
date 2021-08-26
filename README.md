@@ -139,7 +139,7 @@ EX1.C1<-cropField(field = EX1, shape = EX1.Shape)
 
 #### 3. Sampling point data 
 
-> Sampling random points in the data. Function **`sampleField`**. 
+> Users can sample random points in the data. Function **`sampleField`**. 
 
 ```r
 # Sampling 5%:
@@ -176,7 +176,7 @@ EX1.S<-sampleField(field = EX1,shape = EX1.Shape, size = 0.1)
 
 #### 4. Making rasters 
 
-> Using data points to create raster files. Function **`rasterField`**. Use either the provided code for unprojected data or projected data-- you will not need to run both sets of code. Choosing too high of a resolution will result in a raster file that oversimplifies the shape of the field, and choosing too low of a resolution can cause the runtime to be to long and/or cause the parts of the field between combine passes to be excluded from the final field shape. 
+> Data points can be used to create raster files. Function **`rasterField`**. Use either the provided code for unprojected data or projected data-- you will not need to run both sets of code. Choosing too high of a resolution will result in a raster file that oversimplifies the shape of the field, and choosing too low of a resolution can cause the runtime to be to long and/or cause the parts of the field between combine passes to be excluded from the final field shape. 
 
 ```r
 # Check projection to observe '+units=':
@@ -228,7 +228,7 @@ EX1.R<-rasterField(field = EX1,
 
 #### 5. Building shape boundaries
 
-> Making field boundaries automatically or manually. Function **`boundaryField`**. 
+> Users can manually draw field boundaries or use the raster layer to draw field boundaries automatically. Function **`boundaryField`**. 
 
 * **Automatic - a raster layer is necessary for drawing the boundary on an automatic and fast way (use function **`rasterField`** before).**
 
@@ -304,7 +304,7 @@ plot(EX1.P)
 
 #### 6. Buffering the field boundaries
 
-> Making a buffering around the field using a new shapefile (**Value must be negative**). Function **`bufferField`**. 
+> Users can make a buffer around the field boundarys using a new shapefile (**Value must be negative**). Function **`bufferField`**. 
 
 * Only shapefile:
 
@@ -345,7 +345,7 @@ EX1.B<-bufferField(shape = EX1.Shape,
 
 #### 7. Filtering using data values
 
-> Filtering data using values criteria. Function **`filterField`**. 
+> Users can filter spatial point data using values criteria. Function **`filterField`**. 
 
 * Observing traits histograms:
 
@@ -422,7 +422,7 @@ EX1.F<-filterField(field = EX1,
 
 #### 8. Filtering using standard deviation values  
 
-> Filtering data using standard deviation values for different traits. Function **`sdField`**. 
+> Filtering data can also be performed using standard deviation values for different traits. Function **`sdField`**. 
 
 ```r
 # Filtering data for Dry_Yield sd<0.2:
