@@ -622,7 +622,7 @@ plot(NewField, add=T, col="gold4",pch=20,cex=0.5)
 
 #### 10. Saving files
 
-* The same function `writeOGR()` from **rgdal** package can save "SpatialPointsDataFrames" and "SpatialPolygonsDataFrame" as a shapefile.
+* This example code uses the function `writeOGR()` from the **rgdal** package to save "SpatialPointsDataFrames" and the function `shapefile` from the **raster** package to save "SpatialPolygon" objects. 
 
 ```r
 library(rgdal)
@@ -632,7 +632,7 @@ writeOGR(EX1.B$newField, ".", "EX1.newField", driver="ESRI Shapefile")
 EX1.newField <- readOGR("EX1.newField.shp") # Reading the saved data points.
 
 # New boundary or shape (SpatialPolygonsDataFrame):
-writeOGR(EX1.B$newShape, ".", "EX1.newShape", driver="ESRI Shapefile")
+shapefile(x=EX1.B$newShape, file= "EX1.newShape") #writing the shapefile using a function from raster
 EX1.newShape <- readOGR("EX1.newShape.shp") # Reading the saved shapefile.
 
 ```
