@@ -230,7 +230,7 @@ EX1.R<-rasterField(field = EX1,
 
 > Users can manually draw field boundaries or use the raster layer to draw field boundaries automatically. Function **`boundaryField`**. 
 
-* **Automatic - a raster layer is necessary for drawing the boundary on an automatic and fast way (use function **`rasterField`** before).**
+* **Automatic - a raster layer is necessary for drawing the boundary automatically, which is the fastest method (use function **`rasterField`** before).**
 
 ```r
 EX1.P<-boundaryField(field = EX1.R$Dry_Yield)
