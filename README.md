@@ -240,7 +240,7 @@ EX1.P<-boundaryField(field = EX1.R$Dry_Yield)
   <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filter12.jpg" width="70%" height="70%">
 </p>
 
-* **Manually - make points around the field boundary and press ESC when it is done (use the paramter `draw = TRUE`).**
+* **Manually - use your cursor to make points around the field boundary and press ESC when it is done (use the paramter `draw = TRUE`).**
 
 ```r
 EX1.P<-boundaryField(field = EX1, draw = TRUE)
