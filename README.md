@@ -1,9 +1,9 @@
 
 ## [cleanRfield](https://github.com/filipematias23/cleanRfield): A tool for cleaning and filtering data spatial points from crop yield maps in [R](https://www.r-project.org).
 
-> This package is a compilation of functions to clean and filter observations from yield monitors or other agricultural spatial point data. Yield monitors are prone to error, and filtering the observations or removing observations from near field boundaries can improve estimates of whole-field yield, combine speed, grain moisture, or other parameters. In this package, users can easily select filters thresholding for one or more traits and prepare a smaller dataset to make decisions.
+> This package is a compilation of functions to clean and filter observations from yield monitors or other agricultural spatial point data. Yield monitors are prone to error, and filtering the observations or removing observations from near field boundaries can improve estimates of whole-field yield, combine speed, grain moisture, or other parameters of interest. In this package, users can easily select filters for one or more traits and prepare a smaller dataset to make decisions.
 
-> This tutorial assumes that readers have a basic understanding of spatial data, including projections and coordinate reference systems. If you need a refresher on this topic, we recommend reading [this quick blog post for deciding between projected and unprojected data](https://spatiallychallenged.com/2018/11/01/selecting-a-projection-for-spatial-analysis/) and [this post for understanding the basics of coordinate reference systems](https://spatiallychallenged.com/2018/11/05/epsg-numbers-and-coordinate-reference-systems/). 
+> This tutorial assumes that readers have a basic understanding of spatial data, including projections and coordinate reference systems. If you need a refresher on this topic, we recommend reading [this blog post for deciding between projected and unprojected data](https://spatiallychallenged.com/2018/11/01/selecting-a-projection-for-spatial-analysis/) and [this post for understanding the basics of coordinate reference systems](https://spatiallychallenged.com/2018/11/05/epsg-numbers-and-coordinate-reference-systems/). 
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/CleanRField_large.jpg" width="40%" height="40%">
@@ -176,7 +176,7 @@ EX1.S<-sampleField(field = EX1,shape = EX1.Shape, size = 0.1)
 
 #### 4. Making rasters 
 
-> Data points can be used to create raster files. Function **`rasterField`**. Use either the provided code for unprojected data or projected data-- you will not need to run both sets of code. Choosing too high of a resolution will result in a raster file that oversimplifies the shape of the field, and choosing too low of a resolution can cause the runtime to be to long and/or cause the parts of the field between combine passes to be excluded from the final field shape. 
+> Function **`rasterField`**.Data points can be used to create raster files. Use either the provided code for unprojected data or projected data-- you will not need to run both sets of code. Choosing too high of a resolution will result in a raster file that oversimplifies the shape of the field, and choosing too low of a resolution can cause the runtime to be to long and/or cause the parts of the field between combine passes to be excluded from the final field shape. 
 
 ```r
 # Check projection to observe '+units=':
