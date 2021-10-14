@@ -221,6 +221,23 @@ EX1.R<-rasterField(field = EX1,
   <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filter11.jpg" width="70%" height="70%">
 </p>
 
+```r
+# Different raster color visualizations:
+library(RColorBrewer)
+par(mfrow=c(2,3))
+plot(EX1.R$Dry_Yield)
+plot(EX1.R$Dry_Yield,col = heat.colors(10))
+plot(EX1.R$Dry_Yield,col = topo.colors(10))
+plot(EX1.R$Dry_Yield,col = brewer.pal(11, "RdYlGn"))
+plot(EX1.R$Dry_Yield,col = brewer.pal(9, "BuGn"))
+plot(EX1.R$Dry_Yield,col = brewer.pal(9, "Greens"))
+par(mfrow=c(1,1))
+```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filter11col.jpeg">
+</p>
+
 [Menu](#menu)
 
 <div id="P5" />
