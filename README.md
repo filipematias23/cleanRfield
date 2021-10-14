@@ -25,8 +25,9 @@
    * [7. Filtering using data values](#P7)
    * [8. Filtering using standard deviation values](#P8)
    * [9. Evaluating multiple fields on parallel](#P9)
-   * [10. Saving files](#P10)
-   * [11. Working with .csv or .txt files](#P11)
+   * [10. Plotting Data](#P10)
+   * [11. Saving files](#P11)
+   * [12. Working with .csv or .txt files](#P12)
    * [Contact](#PC)
 
 <div id="Instal" />
@@ -620,7 +621,31 @@ plot(NewField, add=T, col="gold4",pch=20,cex=0.5)
 
 ---------------------------------------------
 
-#### 10. Saving files
+#### 10. Making Maps
+
+* This example code uses the function `spplot()` from the **sp** package to visualze "SpatialPointsDataFrames" in the plot viewing pane in R studio. The demonstrated code is useful for visualizing data before or after filtering using **cleanRfield**.
+
+```r
+spplot(EX1, "Dry_Yield") # Make a very basic plot where brighter colors denote higher yield
+
+spplot(EX1, "Dry_Yield", cuts=6) #Adjusting cuts changes the number of categories in the legend
+```
+* If you prefer making visualizations using the package **ggplot2** , we recommend converting the data from "SpatialPointsDataFrames" to "sf" objects. 
+
+```r 
+library(sf)
+EX1sf<-st_as_sf(EX1, geometry= pts) #convert the object EX1 into an sf object named EX1sf
+
+library(ggplot2)
+ggplot()+geom_sf(data=EX1sf, aes(color= Dry_Yield)) #plot the data using geom_sf and the ggplot2 default color gradient
+```
+[Menu](#menu)
+
+<div id="P11" />
+
+---------------------------------------------
+
+#### 11. Saving files
 
 * This example code uses the function `writeOGR()` from the **rgdal** package to save "SpatialPointsDataFrames" and the function `shapefile` from the **raster** package to save "SpatialPolygon" objects. 
 
@@ -632,17 +657,17 @@ writeOGR(EX1.B$newField, ".", "EX1.newField", driver="ESRI Shapefile")
 EX1.newField <- readOGR("EX1.newField.shp") # Reading the saved data points.
 
 # New boundary or shape (SpatialPolygonsDataFrame):
-shapefile(x=EX1.B$newShape, file= "EX1.newShape") #writing the shapefile using a function from raster
+shapefile(x=EX1.B$newShape, file= "EX1.newShape") # Writing the shapefile using a function from raster
 EX1.newShape <- readOGR("EX1.newShape.shp") # Reading the saved shapefile.
 
 ```
 [Menu](#menu)
 
-<div id="P11" />
+<div id="P12" />
 
 ---------------------------------------------
 
-#### 11. Working with .csv and .txt files
+#### 12. Working with .csv and .txt files
 
 > If your data is stored as .csv or other file types, you can still utilizer cleanRfield by reading the data into a data frame in R before converting the data frame to a Spatial Points Data frame. This example uses a .csv file as the data source, but any data frame object in R that has coordinates can be converted to a spatial points data frame using this method regardless of data source file type. This data is in latitude and longitude (unprojected data). You will need to use a different CRS in the proj4string section if your data is projected. See the example code below and learn more about SpatialPoints in [the documentation for the package sp](https://cran.r-project.org/web/packages/sp/sp.pdf). 
 
