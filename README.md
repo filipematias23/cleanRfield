@@ -667,7 +667,7 @@ ggplot()+geom_sf(data=EX1sf, aes(color= Dry_Yield))
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/figure31.jpeg" width="70%" height="70%">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/figure31.jpeg" width="80%" height="80%">
 </p>
 
 
