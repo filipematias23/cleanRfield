@@ -25,7 +25,7 @@
    * [7. Filtering using data values](#P7)
    * [8. Filtering using standard deviation values](#P8)
    * [9. Evaluating multiple fields on parallel](#P9)
-   * [10. Plotting Data](#P10)
+   * [10. Making Maps](#P10)
    * [11. Saving files](#P11)
    * [12. Working with .csv or .txt files](#P12)
    * [Contact](#PC)
