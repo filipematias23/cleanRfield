@@ -643,19 +643,34 @@ plot(NewField, add=T, col="gold4",pch=20,cex=0.5)
 * This example code uses the function `spplot()` from the **sp** package to visualze "SpatialPointsDataFrames" in the plot viewing pane in R studio. The demonstrated code is useful for visualizing data before or after filtering using **cleanRfield**.
 
 ```r
-spplot(EX1, "Dry_Yield") # Make a very basic plot where brighter colors denote higher yield
+# Make a very basic plot where brighter colors denote higher yield
+spplot(EX1, "Dry_Yield") 
 
-spplot(EX1, "Dry_Yield", cuts=6) #Adjusting cuts changes the number of categories in the legend
+#Adjusting cuts changes the number of categories in the legend
+spplot(EX1, "Dry_Yield", cuts=6) 
 ```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filter30.jpg" width="50%" height="50%">
+</p>
+
 * If you prefer making visualizations using the package **ggplot2** , we recommend converting the data from "SpatialPointsDataFrames" to "sf" objects. 
 
 ```r 
+#convert the object EX1 into an sf object named EX1sf
 library(sf)
-EX1sf<-st_as_sf(EX1, geometry= pts) #convert the object EX1 into an sf object named EX1sf
+EX1sf<-st_as_sf(EX1, geometry= pts) 
 
+#plot the data using geom_sf and the ggplot2 default color gradient
 library(ggplot2)
-ggplot()+geom_sf(data=EX1sf, aes(color= Dry_Yield)) #plot the data using geom_sf and the ggplot2 default color gradient
+ggplot()+geom_sf(data=EX1sf, aes(color= Dry_Yield)) 
 ```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/figure31.jpeg" width="70%" height="70%">
+</p>
+
+
 [Menu](#menu)
 
 <div id="P11" />
