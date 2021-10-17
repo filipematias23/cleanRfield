@@ -177,7 +177,7 @@ EX1.S<-sampleField(field = EX1,shape = EX1.Shape, size = 0.1)
 
 #### 4. Making rasters 
 
-> Function **`rasterField`**.Data points can be used to create raster files. Use either the provided code for unprojected data or projected data-- you will not need to run both sets of code. Choosing too high of a resolution will result in a raster file that oversimplifies the shape of the field, and choosing too low of a resolution can cause the runtime to be to long and/or cause the parts of the field between combine passes to be excluded from the final field shape. 
+> Function **`rasterField`**.Data points can be used to create raster files. Use either the provided code for unprojected data or projected data-- you will not need to run both sets of code. Any positive number can be chosen as the resolution, but choosing too high of a resolution will result in a raster file that oversimplifies the shape of the field, and choosing too low of a resolution can cause the runtime to be to long and/or cause the parts of the field between combine passes to be excluded from the final field shape. 
 
 ```r
 # Check projection to observe '+units=':
