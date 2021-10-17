@@ -664,6 +664,20 @@ EX1sf<-st_as_sf(EX1, geometry= pts)
 #plot the data using geom_sf and the ggplot2 default color gradient
 library(ggplot2)
 ggplot()+geom_sf(data=EX1sf, aes(color= Dry_Yield)) 
+
+#or make a figure using fewer of the ggplot2 display defaults
+EX1.F10<-filterField(field = EX1,  #filtering with Dry_Yield>10 to create a different example for plotting data
+                   trait = "Dry_Yield",
+                   value = 10,
+                   cropAbove = T) 
+EX1sf10<-st_as_sf(EX1.F10, geometry= pts) #converting the object EX1.F10 into an sf object
+ggplot() + 
+  geom_sf(data = EX1sf10, aes(color = Dry_Yield), size = 0.01) + #made the individual points smaller
+  scale_color_gradient(low = "yellow2", high = "green4") + #created a different color gradient
+  ggtitle("Field EX1.F10 Filtered Yield") + #added a main figure title
+  labs(color='Dry Yield (bu/acre)') + #changed legend title
+  theme_void() #removed grid background from figure
+
 ```
 
 <p align="center">
