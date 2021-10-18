@@ -44,6 +44,13 @@
 install.packages("devtools")
 devtools::install_github("filipematias23/cleanRfield")
 ```
+
+<br />
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/cleanRfield_R.jpg">
+</p>
+
 <br />
 
 [Menu](#menu)
@@ -663,7 +670,9 @@ EX1sf<-st_as_sf(EX1, geometry= pts)
 
 #plot the data using geom_sf and the ggplot2 default color gradient
 library(ggplot2)
-ggplot()+geom_sf(data=EX1sf, aes(color= Dry_Yield)) 
+ggplot()+
+geom_sf(data=EX1sf, aes(color= Dry_Yield))+ 
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 #or make a figure using fewer of the ggplot2 display defaults
 EX1.F10<-filterField(field = EX1,  #filtering with Dry_Yield>10 to create a different example for plotting data
