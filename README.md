@@ -780,6 +780,7 @@ SpatialDF <- SpatialPointsDataFrame(coords = xy, data = DF,
 ### Acknowledgments
 
 > * [Shawn Conley](https://coolbean.info/)
+> * [North Dakota State University](https://www.ndsu.edu/agriculture/academics/academic-units/plant-sciences)
 > * [University of Wisconsin - Madison](https://agronomy.wisc.edu/)
 
 <br />
