@@ -6,7 +6,7 @@ Authors@R:
              family = "Matias",
              role = c("cre", "aut"),
              email = "filipematias23@gmail.com"))
-Description: A compilation of functions to filter spacial points from agricultural field trials.
+Description: A compilation of functions to filter spatial points from agricultural field trials.
 License: GPL-3 + file LICENSE
 Imports: 
     methods,
