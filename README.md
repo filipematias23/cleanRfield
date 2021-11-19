@@ -773,7 +773,7 @@ SpatialDF <- SpatialPointsDataFrame(coords = xy, data = DF,
 ### Author
 
 > * [Filipe Inacio Matias](https://github.com/filipematias23)
-> * [Emma Matcham]()
+> * [Emma Matcham](https://mobile.twitter.com/egmatcham)
 
 <br />
 
