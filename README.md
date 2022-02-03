@@ -139,7 +139,7 @@ EX1.C1<-cropField(field = EX1, shape = EX1.Shape)
   <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filter5.jpg" width="70%" height="70%">
 </p>
 
-> The newest version of RStudio has updated the plot viewing pane. If you are using the newest RStudio, you may need run an additional line of code to open the point-and-click cropping functionality in a pop-out window instea of the integrated plot viewing pane. 
+> The newest version of RStudio (2021.09.2) has updated the plot viewing pane. If you are using the newest RStudio, you may need run an additional line of code to open the point-and-click cropping functionality in a pop-out window instea of the integrated plot viewing pane. 
 
 ```r
 #Open an extra plot window 
