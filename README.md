@@ -142,7 +142,8 @@ EX1.C1<-cropField(field = EX1, shape = EX1.Shape)
 > The newest version of RStudio has updated the plot viewing pane. If you are using the newest RStudio, you may need run an additional line of code to open the point-and-click cropping functionality in a pop-out window instea of the integrated plot viewing pane. 
 
 ```r
-x11() #Open an extra plot window with no errors
+#Open an extra plot window 
+x11() 
 # "Use cursor to select 4 points around of polygon (1) in the plots window."
 EX1.C<-cropField(field = EX1, nPolygon = 1, nPoint = 4)
 ```
