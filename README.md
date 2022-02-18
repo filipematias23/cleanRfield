@@ -28,6 +28,7 @@
    * [10. Making Maps](#P10)
    * [11. Saving files](#P11)
    * [12. Working with .csv or .txt files](#P12)
+   * [13. Interpolating yield maps] (#P13)
    * [Contact](#PC)
 
 <div id="Instal" />
@@ -753,6 +754,171 @@ SpatialDF <- SpatialPointsDataFrame(coords = xy, data = DF,
 
 
 ```
+
+[Menu](#menu)
+
+<div id="PC" />
+
+---------------------------------------------
+#### 13. Interpolating yield maps
+
+> Users may want to interpolate their yield observations to create a raster data set for visualization or further data analysis. Below, we have provided some example code for interpolating yield maps using either inverse distance weighting (IDW) or ordinary kriging. In general, we recommend IDW due to its faster processing time for large data sets. 
+
+In this example code, we use the same example data (EX1) as in tutorial section 1. You may also need to install the package **tmap** before proceeding with the provided code. 
+
+The next code section provides an example for running IDW in R. Users will load the required pacakges, load and filter yield data, transform filtered data and the field boundary file, prepare an empty grid, run the IDW interpolation, and finally make a map to visualize the interpolation. Transformation is a step included in this workflow since the EX1 shapefile is not in a projected CRS, and transforming into a projected CRS helps align the yield map observations to the empty grid. Preparing the empty grid is necessary to determine the extent and resolution of the interpolation.
+
+```r
+#### packages to run basic filtering with cleanRfield ####
+library(raster)
+library(rgdal)
+library(cleanRfield)
+
+#### additional packages needed for interpolation & mapping ####
+library(gstat) # used to make the idw model
+library(sp) # used to prepare the raster grid with spsample function
+library(tmap) # used for visualization
+
+#### preparing the yield data ####
+EX1 <- readOGR("EX1.shp") # EX1.shp download link is in tutorial section 1
+EX1.Shape <- readOGR("EX1_boundary.shp") #EX1_boundary.shp download link is in tutorial section 1 
+
+# filtering data to remove biologically unlikely soybean yield observations and NA values
+EX1.F <- filterField(field = EX1,
+                   trait = c("Dry_Yield","Dry_Yield"),
+                   value = c(10,100),
+                   cropAbove = c(T,F)) 
+                   
+# transforming the filtered data so that it is a projected CRS
+EX1_merc <- spTransform(EX1.F, CRS=CRS("+proj=merc +ellps=GRS80"))
+summary(EX1_merc) # looking at summary output to check projection
+
+#transforming the boundary too-- this will be used later for visualization
+EX1.Shape_merc <- spTransform(EX1.Shape, CRS=CRS("+proj=merc +ellps=GRS80"))
+summary(EX1.Shape_merc) #looking at summary output to check projection
+
+#### preparing an empty grid ####
+G <- as.data.frame(spsample(EX1_merc, "regular", n=50000)) #n = total number of grid cells
+names(G) <- c("X", "Y")
+coordinates(G) <- c("X", "Y")
+gridded(G) <- TRUE  # create SpatialPixel object
+fullgrid(G) <- TRUE  # create SpatialGrid object
+proj4string(G) <- proj4string(EX1_merc) # using the projection from EX1_merc to project the grid G
+proj4string(G) # checking that G is projected
+
+#### running IDW using the yield data and empty grid ####
+Yield.idw <- gstat::idw(Dry_Yield ~ 1, EX1_merc, newdata=G, idp=2.0)
+
+#### visualizing IDW interpolation ####
+r.idw <- raster(Yield.idw) # convert the IDW model to a RasterStack
+r.masked <- mask(r.idw, EX1.Shape_merc) # mask the raster to the field boundary
+
+yieldmap.idw <- tm_shape(r.masked) + #make the map using functions from the tmap library
+  tm_raster(n=10,palette = "YlGn", 
+            title="Dry Yield") + 
+  tm_legend(legend.outside=TRUE)
+yieldmap.idw #view the map
+
+```
+
+> The following codes sections provides an example for interpolating via ordinary kriging in R. This workflow begins very similarly to the IDW interpolation workflow until we begin creating variogram models
+
+```r
+#### packages to run basic filtering with cleanRfield ####
+library(raster)
+library(rgdal)
+library(cleanRfield)
+
+#### additional packages needed for interpolation & mapping ####
+library(gstat) # used to make the idw model
+library(sp) # used to prepare the raster grid with spsample function
+library(tmap) # used for visualization
+
+#### preparing the yield data ####
+EX1 <- readOGR("EX1.shp") # EX1.shp download link is in tutorial section 1
+EX1.Shape <- readOGR("EX1_boundary.shp") #EX1_boundary.shp download link is in tutorial section 1 
+
+# filtering data to remove biologically unlikely soybean yield observations and NA values
+EX1.F <- filterField(field = EX1,
+                     trait = c("Dry_Yield","Dry_Yield"),
+                     value = c(10,100),
+                     cropAbove = c(T,F)) 
+
+# transforming the filtered data so that it is a projected CRS
+EX1_merc <- spTransform(EX1.F, CRS=CRS("+proj=merc +ellps=GRS80"))
+summary(EX1_merc) # looking at summary output to check projection
+
+# transforming the boundary too-- this will be used later for visualization
+EX1.Shape_merc <- spTransform(EX1.Shape, CRS=CRS("+proj=merc +ellps=GRS80"))
+summary(EX1.Shape_merc) #looking at summary output to check projection
+
+#### make a variogram to assess spatial relationships between yield observations ####
+v_overall <- variogram(Dry_Yield~1, data = EX1_merc) 
+plot(v_overall) # visually estimate sill, model shape, range, and nugget
+vmodel_overall <- vgm(psill=150, model="Sph", nugget=100, range=400) # estimate variogram model
+fittedmodel_overall <- fit.variogram(v_overall, model=vmodel_overall) # fit variogram model   
+fittedmodel_overall #print the fitted model to see how it compares to your initial estimate
+plot(v_overall, model=fittedmodel_overall) 
+
+```
+
+> The example variogram above had a range of ~509m, which indicates that yield observations that are <509m apart are spatially correlated. If you want to learn more about variograms, try [this blog post from GIS Geography](https://gisgeography.com/semi-variogram-nugget-range-sill/). Next, we will check that the data is not anisotrophic by developing 4 separate directional variograms. 
+
+```r 
+# let's see if the spatial autocorrelation is the same in all directions-- is the data anisotrophic?
+gs_object <- gstat(formula=Dry_Yield~ 1, data=EX1_merc)
+v_directional <- variogram(gs_object, alpha=c(0,45,90,135))
+vmodel_directional <- vgm(model='Sph' , anis=c(0, 0.5))
+fittedmodel_directional <- fit.variogram(v_directional, model=vmodel_directional)
+plot(v_directional, model=fittedmodel_directional, as.table=TRUE)
+
+```
+
+> There is not a commonly applied statistical test for anisotrophy, so this decision is a judgement call that each person will make a little differently. For distances <250m, these models are  pretty similar. the data is not perfectly stationary, but in our judgement, it is not so anisotrophic that kriging would be inappropriate. If you perform directional variograms and there are very substantial differences between the models, we do not recommend kriging for interpolation. Instead, try another interpolation method that doesn't assume stationarity
+
+Kriging takes a long time to compute, so in this example we will randomly sample 20% the yield observations before kriging to save time. Depending on your computer and your use for the kriged map, you may want to sample even fewer points, or krige using all observations. In this example we also used a lower resolution empty grid than in the IDW example to save computational time. 
+
+```r
+#### sample 20% of yield observations ####
+EX1_merc_10pct<-sampleField(field = EX1_merc, size = 0.2) 
+
+#### update the empty grid and gstat object ####
+# prepare a similar, but smaller, empty grid than the IDW example code
+G             <- as.data.frame(spsample(EX1_merc, "regular", n=10000))
+names(G)       <- c("X", "Y")
+coordinates(G) <- c("X", "Y")
+gridded(G)     <- TRUE  # Create SpatialPixel object
+fullgrid(G)    <- TRUE  # Create SpatialGrid object
+proj4string(G) <- proj4string(EX1_merc) 
+proj4string(G) #checking that G is projected
+
+# now update the gstat object from before so that it includes the fitted
+# model, not the estimated model from earlier in the kriging workflow
+gs_object <- gstat(formula=Dry_Yield~ 1,
+                   data=EX1_merc_10pct, model=fittedmodel_overall)
+
+#### run the kriging procedure using the gstat object and empty grid ####
+kriged_surface <- predict(gs_object, model=fittedmodel_overall, newdata=G) 
+
+summary(kriged_surface)
+
+```
+
+> There's a reason most point-and-click softwares highly recommend not kriging yield maps. Even with just 20% of the observations, that took almost 5 min to run on my laptop. Running 50% of the observations takes me over 25 min. Fortunately, once the kriged surface is made, visualization is quick. 
+
+```r
+#### visualizing kriged map ####
+kriged_raster <- raster(kriged_surface)
+kriged_masked    <- mask(kriged_raster, EX1.Shape_merc)
+
+tm_shape(kriged_masked) + 
+  tm_raster(n=10,palette = "YlGn", 
+            title="Dry Yield") + 
+  tm_legend(legend.outside=TRUE)
+```
+
+> Regardless of interpolation method chosen, we highly recommend assessing the fit of your model using cross-validation and other methods. We do not provide code for assessing goodness of fit in this tutorial, but you can provide more information on this process from a variety of GIS tutorials. We find [Manuel Gimond's tutorial](https://mgimond.github.io/Spatial/interpolation-in-r.html) to be particularly helpful.
+
 
 [Menu](#menu)
 
