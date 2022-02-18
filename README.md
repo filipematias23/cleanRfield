@@ -757,16 +757,16 @@ SpatialDF <- SpatialPointsDataFrame(coords = xy, data = DF,
 
 [Menu](#menu)
 
-<div id="PC" />
+<div id="P13" />
 
 ---------------------------------------------
 #### 13. Interpolating yield maps
 
 > Users may want to interpolate their yield observations to create a raster data set for visualization or further data analysis. Below, we have provided some example code for interpolating yield maps using either inverse distance weighting (IDW) or ordinary kriging. In general, we recommend IDW due to its faster processing time for large data sets. 
 
-In this example code, we use the same example data (EX1) as in tutorial section 1. You may also need to install the package **tmap** before proceeding with the provided code. 
+> In this example code, we use the same example data (EX1) as in tutorial section 1. You may also need to install the package **tmap** before proceeding with the provided code. 
 
-The next code section provides an example for running IDW in R. Users will load the required pacakges, load and filter yield data, transform filtered data and the field boundary file, prepare an empty grid, run the IDW interpolation, and finally make a map to visualize the interpolation. Transformation is a step included in this workflow since the EX1 shapefile is not in a projected CRS, and transforming into a projected CRS helps align the yield map observations to the empty grid. Preparing the empty grid is necessary to determine the extent and resolution of the interpolation.
+> The next code section provides an example for running IDW in R. Users will load the required pacakges, load and filter yield data, transform filtered data and the field boundary file, prepare an empty grid, run the IDW interpolation, and finally make a map to visualize the interpolation. Transformation is a step included in this workflow since the EX1 shapefile is not in a projected CRS, and transforming into a projected CRS helps align the yield map observations to the empty grid. Preparing the empty grid is necessary to determine the extent and resolution of the interpolation.
 
 ```r
 #### packages to run basic filtering with cleanRfield ####
@@ -876,7 +876,7 @@ plot(v_directional, model=fittedmodel_directional, as.table=TRUE)
 
 > There is not a commonly applied statistical test for anisotrophy, so this decision is a judgement call that each person will make a little differently. For distances <250m, these models are  pretty similar. the data is not perfectly stationary, but in our judgement, it is not so anisotrophic that kriging would be inappropriate. If you perform directional variograms and there are very substantial differences between the models, we do not recommend kriging for interpolation. Instead, try another interpolation method that doesn't assume stationarity
 
-Kriging takes a long time to compute, so in this example we will randomly sample 20% the yield observations before kriging to save time. Depending on your computer and your use for the kriged map, you may want to sample even fewer points, or krige using all observations. In this example we also used a lower resolution empty grid than in the IDW example to save computational time. 
+> Kriging takes a long time to compute, so in this example we will randomly sample 20% the yield observations before kriging to save time. Depending on your computer and your use for the kriged map, you may want to sample even fewer points, or krige using all observations. In this example we also used a lower resolution empty grid than in the IDW example to save computational time. 
 
 ```r
 #### sample 20% of yield observations ####
