@@ -821,6 +821,10 @@ yieldmap.idw #view the map
 
 ```
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filter_N_1.jpeg" width="70%" height="70%">
+</p>
+
 > The following codes sections provides an example for interpolating via ordinary kriging in R. This workflow begins very similarly to the IDW interpolation workflow until we begin creating variogram models
 
 ```r
@@ -862,6 +866,10 @@ plot(v_overall, model=fittedmodel_overall)
 
 ```
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filter_N_2.jpeg" width="60%" height="60%">
+</p>
+
 > The example variogram above had a range of ~509m, which indicates that yield observations that are <509m apart are spatially correlated. If you want to learn more about variograms, try [this blog post from GIS Geography](https://gisgeography.com/semi-variogram-nugget-range-sill/). Next, we will check that the data is not anisotrophic by developing 4 separate directional variograms. 
 
 ```r 
@@ -873,6 +881,10 @@ fittedmodel_directional <- fit.variogram(v_directional, model=vmodel_directional
 plot(v_directional, model=fittedmodel_directional, as.table=TRUE)
 
 ```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filter_N_3.jpeg" width="70%" height="70%">
+</p>
 
 > There is not a commonly applied statistical test for anisotrophy, so this decision is a judgement call that each person will make a little differently. For distances <250m, these models are  pretty similar. the data is not perfectly stationary, but in our judgement, it is not so anisotrophic that kriging would be inappropriate. If you perform directional variograms and there are very substantial differences between the models, we do not recommend kriging for interpolation. Instead, try another interpolation method that doesn't assume stationarity
 
@@ -916,6 +928,10 @@ tm_shape(kriged_masked) +
             title="Dry Yield") + 
   tm_legend(legend.outside=TRUE)
 ```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/filipematias23/images/master/readme/filter_N_4.jpeg" width="70%" height="70%">
+</p>
 
 > Regardless of interpolation method chosen, we highly recommend assessing the fit of your model using cross-validation and other methods. We do not provide code for assessing goodness of fit in this tutorial, but you can provide more information on this process from a variety of GIS tutorials. We find [Manuel Gimond's tutorial](https://mgimond.github.io/Spatial/interpolation-in-r.html) to be particularly helpful.
 
