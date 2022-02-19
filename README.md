@@ -28,7 +28,7 @@
    * [10. Making Maps](#P10)
    * [11. Saving files](#P11)
    * [12. Working with .csv or .txt files](#P12)
-   * [13. Interpolating yield maps] (#P13)
+   * [13. Interpolating yield maps](#P13)
    * [Contact](#PC)
 
 <div id="Instal" />
