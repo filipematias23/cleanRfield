@@ -957,7 +957,7 @@ tm_shape(kriged_masked) +
 
 ### Citation
 
-> coming soon...
+> Matcham, E. G., Matias, F.I., Luck, B., and Conley, S. P. (2022). Filtering, editing, and cropping yield maps in R environment with the package cleanRfield. Agronomy Journal 114(3): 1672-1679. https://doi.org/10.1002/agj2.21055  
 
 <br />
 
