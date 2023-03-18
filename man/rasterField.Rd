@@ -2,27 +2,26 @@
 % Please edit documentation in R/fct_rasterField.R
 \name{rasterField}
 \alias{rasterField}
-\title{Making raster from original data}
+\title{Make a raster from shapefile data}
 \usage{
 rasterField(field, res = 1, trait = NULL, shape = NULL, cex = 1)
 }
 \arguments{
-\item{field}{object of class SpatialPointsDataFrame.}
+\item{field}{SpatVector. The shapefile to be converted to raster.}
 
 \item{res}{resolution to make the raster layer.}
 
-\item{trait}{vector with the trait to be used as filter criteria.}
+\item{trait}{vector with the traits to be converted to raster.}
 
-\item{shape}{crop/select the object area using this shape as reference. If shape=NULL, 
-the user will need to draw one or more polygon(s).}
+\item{shape}{a specific area inside the field to be converted to raster. If shape=NULL, all field data will be converted.}
 
-\item{cex}{point expansion/size. Please check \code{help("points")}.}
+\item{cex}{point size. Please check \code{help("points")}.}
 }
 \value{
-A image format stack.
+A raster stack in form SpatRaster.
 }
 \description{
-This function allows to make raster layers from original data.
+This function makes raster layers from shapefile data.
 }
 \details{
 rasterField

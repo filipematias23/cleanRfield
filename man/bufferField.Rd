@@ -2,29 +2,28 @@
 % Please edit documentation in R/fct_bufferField.R
 \name{bufferField}
 \alias{bufferField}
-\title{Selecting/filtering experimental data based on shapefile buffering.}
+\title{Create a buffer shapefile within the target geometry}
 \usage{
 bufferField(shape, value = c(-1), field = NULL, cex = 1)
 }
 \arguments{
-\item{shape}{crop/select the object area using this shape as reference.}
+\item{shape}{SpatVector. The target geometry to be buffered. Object of class.}
 
-\item{value}{referent value to be used as a buffer for  the shapefile (must be numeric and negative).}
+\item{value}{value of the buffer - measured in mapunits. Must be numeric and negative.}
 
-\item{field}{object of class SpatialPointsDataFrame. If field=NULL, 
-only the new shapefile will be generated.}
+\item{field}{SpatVector. If input, field cropped by target geometry included in output. If field=NULL, only the buffer will be generated.}
 
-\item{cex}{point expansion/size. Please check \code{help("points")}.}
+\item{cex}{point size. Please check \code{help("points")}.}
 }
 \value{
-A list with two elements
+If field=NULL, the buffer SpatVector is returned. If field provided, list with two elements is returned:
 \itemize{
-\item \code{newShape} is the \code{Shape} format \code{SpatialPolygonsDataFrame}.
-\item \code{newField} is the field filtered based on the shape.
+\item \code{newShape} is the buffer SpatVector.
+\item \code{newField} is the field cropped using the buffered shape, also a SpatVector.
 }
 }
 \description{
-This function allows to filter regions on the original data based on shapefile reduction using different buffer values.
+This function produces a buffer within the target geometry by a specified value.
 }
 \details{
 bufferField

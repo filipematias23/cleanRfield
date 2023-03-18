@@ -1,55 +1,60 @@
 #' boundaryField
 #' 
-#' @title Making raster from original data
+#' @title Create a boundary shapefile from raster data
 #' 
-#' @description This function allows to make shapefile boundary from raster layers.
+#' @description This function produces a simplified boundary shapefile from raster data.  
 #' 
-#' @param field object of class 'raster'.
-#' @param draw use TRUE for drawing field boundaries.
+#' @param field SpatRaster. Field to be converted to boundary shapefile.
+#' @param draw use TRUE to draw field boundaries.
 #' @param col line color.
-#' @param cex point expansion/size. Please check \code{help("points")}.
+#' @param cex point size. Please check \code{help("points")}.
+#' @param threshold area (m^2) of small polygons, below which will be removed.
+#' @param tolerance boundary simplification - minimum distance between nodes in units of the crs (i.e. degrees for long/lat)
 #' 
-#' @importFrom raster plot projection drawPoly crop aggregate rasterToPolygons
-#' @importFrom sp SpatialPolygonsDataFrame
+#' @importFrom units set_units
+#' @importFrom terra simplifyGeom fillHoles aggregate as.polygons plot draw crs
+#' @importFrom smoothr drop_crumbs
 #' @importFrom grDevices grey
 #' @importFrom methods as is
-#' 
 #'
-#' @return shapefile boundary SpatialPolygonsDataFrame.
+#' @return A simplified boundary as SpatVector.
 #' 
 #'
 #' @export
-boundaryField<-function(field,draw=FALSE,col="red",cex=1)
+boundaryField <- function (field, draw = FALSE, col = "red", cex = 1, threshold = 1000, tolerance = 0.0002) 
 {
-  print(paste("Field class is ",class(field)[1],sep = ""))
-  if(!draw){
-    if(!class(field)%in%c("raster","RasterLayer","RasterStack","stack","RasterBrick","brick")){
+  print(paste("Field class is ", class(field)[1], sep = ""))
+  if (!draw) {
+    if (!class(field) %in% c("SpatRaster")) {
       stop("For automatic boundary identification, 'boundaryField()' function requires a raster object. Please, use the function 'rasterField()' first or use 'draw=T' for drawing the boundary.")
     }
     par(mfrow = c(1, 2))
-    shape<-aggregate(rasterToPolygons(field))
+    area_thresh <- units::set_units(threshold, m^2)
+    shape <- simplifyGeom(smoothr::drop_crumbs(fillHoles(aggregate(as.polygons(field),fun=mean)), threshold = area_thresh),
+                          tolerance = tolerance)
   }
-  if(draw){
+  if (draw) {
     par(mfrow = c(1, 3))
-    print("Draw the field 'boundary' and press 'ESC' when it is done.")
-    if(class(field)%in%c("raster","RasterLayer","stack","RasterStack","RasterBrick","brick")){
-      raster::plot(field, axes = FALSE, box = FALSE, col = grey(100:1/100), main="Use this image \nto draw field 'boundary' \nand press 'ESC' \nwhen it is done")
+    print("Draw field 'boundary' and press 'ESC' when done.")
+    if (class(field) %in% c("SpatRaster")) {
+      terra::plot(field, axes = FALSE, box = FALSE, col = grey(100:1/100), 
+           main = "Draw field 'boundary' and press 'ESC' when done")
     }
-    if(!class(field)%in%c("raster","RasterLayer","stack","RasterStack","RasterBrick","brick")){
-      sp::plot(field,col="bisque3",cex=cex,main="Use this image \nto draw field 'boundary' \nand press 'ESC' \nwhen it is done")
+    if (!class(field) %in% c("SpatRaster")) {
+      terra::plot(field, col = "bisque3", cex = cex, main = "Draw field 'boundary' and press 'ESC' when done")
     }
-    shape<- drawPoly(sp = T,col = col,lwd = 1)
+    shape <- draw(x="polygon", col = col, lwd = 1)
   }
-  shape <- SpatialPolygonsDataFrame(shape,data = data.frame(row.names = 1))
-  raster::projection(shape) <- raster::projection(field)
-  if(class(field)%in%c("raster","RasterLayer","stack","RasterStack","RasterBrick","brick")){
-    raster::plot(field, col = grey(100:1/100), main="Original")
+  crs(shape) <- crs(field)
+  
+  if (class(field) %in% c("SpatRaster")) {
+    terra::plot(field, col = grey(100:1/100), main = "Original")
   }
-  if(!class(field)%in%c("raster","RasterLayer","stack","RasterStack","RasterBrick","brick")){
-    sp::plot(field, col = "gold4", main="Original",cex=cex)
+  if (!class(field) %in% c("SpatRaster")) {
+    terra::plot(field, col = "gold4", main = "Original", cex = cex)
   }
-  sp::plot(shape, add=T)
-  sp::plot(shape, main="Shapefile")
+  terra::plot(shape, add = T)
+  terra::plot(shape, main = "Shapefile")
   par(mfrow = c(1, 1))
   return(shape)
 }

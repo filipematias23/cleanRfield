@@ -2,25 +2,24 @@
 % Please edit documentation in R/fct_sampleField.R
 \name{sampleField}
 \alias{sampleField}
-\title{Sampling experimental data points.}
+\title{Sample data points within specified field.}
 \usage{
 sampleField(field, shape = NULL, size = 0.1, cex = 1)
 }
 \arguments{
-\item{field}{object of class SpatialPointsDataFrame.}
+\item{field}{SpatVector. The field to be sampled.}
 
-\item{shape}{crop/select the object area using this shape as reference. If shape=NULL, 
-the user will need to draw one or more polygon(s).}
+\item{shape}{a specific area inside the field to be sampled. If shape=NULL, all field data will be sampled.}
 
-\item{size}{reduction proportion of original data (must be values between 0 and 1).}
+\item{size}{the proportion of original data to be sampled (must be values between 0 and 1).}
 
-\item{cex}{point expansion/size. Please check \code{help("points")}.}
+\item{cex}{point size. Please check \code{help("points")}.}
 }
 \value{
-A image format stack.
+the sampled field is returned in form SpatVector.
 }
 \description{
-This function allows to reduce the original data size.
+This function samples a specified SpatVector, reducing the data size.
 }
 \details{
 sampleField

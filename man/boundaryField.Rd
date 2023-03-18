@@ -2,24 +2,35 @@
 % Please edit documentation in R/fct_boundaryField.R
 \name{boundaryField}
 \alias{boundaryField}
-\title{Making raster from original data}
+\title{Create a boundary shapefile from raster data}
 \usage{
-boundaryField(field, draw = FALSE, col = "red", cex = 1)
+boundaryField(
+  field,
+  draw = FALSE,
+  col = "red",
+  cex = 1,
+  threshold = 1000,
+  tolerance = 2e-04
+)
 }
 \arguments{
-\item{field}{object of class 'raster'.}
+\item{field}{SpatRaster. Field to be converted to boundary shapefile.}
 
-\item{draw}{use TRUE for drawing field boundaries.}
+\item{draw}{use TRUE to draw field boundaries.}
 
 \item{col}{line color.}
 
-\item{cex}{point expansion/size. Please check \code{help("points")}.}
+\item{cex}{point size. Please check \code{help("points")}.}
+
+\item{threshold}{area (m^2) of small polygons, below which will be removed.}
+
+\item{tolerance}{boundary simplification - minimum distance between nodes in units of the crs (i.e. degrees for long/lat)}
 }
 \value{
-shapefile boundary SpatialPolygonsDataFrame.
+A simplified boundary as SpatVector.
 }
 \description{
-This function allows to make shapefile boundary from raster layers.
+This function produces a simplified boundary shapefile from raster data.
 }
 \details{
 boundaryField

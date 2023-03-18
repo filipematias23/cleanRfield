@@ -2,7 +2,7 @@
 % Please edit documentation in R/fct_filterField.R
 \name{filterField}
 \alias{filterField}
-\title{Selecting/filtering experimental data based on different criteria.}
+\title{Filter spatial vector data based on value}
 \usage{
 filterField(
   field,
@@ -14,24 +14,23 @@ filterField(
 )
 }
 \arguments{
-\item{field}{object of class SpatialPointsDataFrame.}
+\item{field}{SpatVector. The field to be filtered.}
 
-\item{shape}{crop/select the object area using this shape as reference. If shape=NULL, 
-all field data will be used for filtering.}
+\item{shape}{a specific area inside the field to be filtered. If shape=NULL, all field data will be used for filtering.}
 
-\item{trait}{vector with the trait to be used as filter criteria.}
+\item{trait}{a vector of the traits to be used as filter criteria.}
 
-\item{value}{referent value of cropping in the data (must be numeric).}
+\item{value}{threshold value to filter the trait data (must be numeric).}
 
-\item{cropAbove}{if TRUE all values above the 'value' will be selected to the new data.}
+\item{cropAbove}{if TRUE all data above the 'value' will be retained. if FALSE all data below the 'value' will be retained.}
 
-\item{cex}{point expansion/size. Please check \code{help("points")}.}
+\item{cex}{point size. Please check \code{help("points")}.}
 }
 \value{
-A image format stack.
+the filtered SpatVector.
 }
 \description{
-This function allows to filter regions on the original data.
+This function filters spatial vector data based on trait value.
 }
 \details{
 filterField

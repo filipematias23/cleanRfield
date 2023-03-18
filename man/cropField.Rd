@@ -2,32 +2,31 @@
 % Please edit documentation in R/fct_cropField.R
 \name{cropField}
 \alias{cropField}
-\title{Selecting/cropping experimental field from original data}
+\title{Crop a specified field from original data}
 \usage{
 cropField(field, shape = NULL, nPolygon = 1, nPoint = 4, cex = 1)
 }
 \arguments{
-\item{field}{object of class SpatialPointsDataFrame.}
+\item{field}{SpatVector.}
 
-\item{shape}{crop/select the object area using this shape as reference. If shape=NULL, 
-the user will need to draw one or more polygon(s).}
+\item{shape}{a specified shape for cropping. If shape=NULL, the user will be prompted to draw one or more polygon(s).}
 
 \item{nPolygon}{number of polygons.}
 
-\item{nPoint}{number of points necessary to select field boundaries or area per polygon (4 >= nPoint <= 50).}
+\item{nPoint}{number of points per polygon (4 >= nPoint <= 50).}
 
-\item{cex}{point expansion/size. Please check \code{help("points")}.}
+\item{cex}{point size. Please check \code{help("points")}.}
 }
 \value{
-A list with three elements
+A list with three elements:
 \itemize{
-\item \code{shape} is the \code{Shape} format \code{SpatialPolygonsDataFrame}.
-\item \code{cropField} is the original object area without the region/area in the shape.
-\item \code{selectedField} is the region/area in the shape.  
+\item \code{shape} is the specified cropped geometry, in format \code{SpatVector}.
+\item \code{cropField} is the original object area without the cropped shape, in format \code{SpatVector}.
+\item \code{selectedField} the cropped data (contained within the cropped shape), in format \code{SpatVector}.
 }
 }
 \description{
-This function allows to crop or select regions on the original data.
+This function crops selected regions from the original data using an existing shapefile or user-drawn polygon.
 }
 \details{
 cropField
