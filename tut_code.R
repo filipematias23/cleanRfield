@@ -1,6 +1,6 @@
 rm(list=ls())
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
-# devtools::install_github("hunterdanielsmith/cleanRfield")
+# devtools::install_github("filipematias23/cleanRfield")
 
 ###################
 ### cleanRfield ###
