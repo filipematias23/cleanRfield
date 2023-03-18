@@ -1,20 +1,19 @@
 Package: cleanRfield
 Title: A tool for cleaning and filtering data spatial points from agricultural field trials
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
-    c(person(given = "Filipe",
-             family = "Matias",
-             role = c("cre", "aut"),
-             email = "filipematias23@gmail.com"))
+    c(person(given = "Filipe",family = "Matias",role = c("cre", "aut"),email = "filipematias23@gmail.com"),
+		person("Hunter","Smith",role = "aut",email = "huntersmith@ufl.edu"))
 Description: A compilation of functions to filter spacial points from agricultural field trials.
 License: GPL-2
-Imports: 
-    methods,
-    raster,
-    rgeos,
-    rgdal,
-    sp
 Encoding: UTF-8
-LazyData: true
-Language: en-US
-RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports:
+    methods,
+    terra,
+    smoothr,
+    units, 
+    grDevices,
+    graphics,
+    stats
