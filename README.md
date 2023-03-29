@@ -102,9 +102,11 @@ par(mfrow=c(1,1))
 ---------------------------------------------
 #### 2. Cropping or selecting targeted field 
 
-> Users can subset the data by drawing boundaries around a field or subset of fields. Function **`cropField`**. Depending on your computer and the size of your data set, this step may take a few seconds. 
+> Users can subset the data by drawing boundaries around a field or subset of fields. Function **`cropField`**. Depending on your computer and the size of your data set, this step may take a few seconds. This function works better using a popup window, not RStudio's integrated viewing pane, so we've included code for opening that new window. 
 
 ```r
+#Open an extra plot window 
+x11() 
 # "Use cursor to select 4 points around polygon (1) in the plots window."
 EX1.C<-cropField(field = EX1, nPolygon = 1, nPoint = 4)
 ```
