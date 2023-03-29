@@ -712,9 +712,13 @@ ggplot() +
 ```r
 library(terra)
 
-# New filtered data (SpatVector):
-writeVector(EX1.B$newField, "EX1.newField.shp", filetype="ESRI Shapefile") 
-EX1.newField <- vect("EX1.newField.shp") # Reading the saved data points. 
+# New boundary (buffered) (SpatVector):
+writeVector(EX1.B, "EX1.Buffered.shp", filetype="ESRI Shapefile") 
+EX1.newField <- vect("EX1.Buffered.shp") # Reading the saved boundary file. 
+
+# New point data (sampled):
+writeVector(EX1.S, "EX1.5percent.shp", filetype = "ESRI Shapefile")
+EX1.S.5pct <- vect("EX1.5percent.shp") # Reading the saved point file.
 ```
 [Menu](#menu)
 
