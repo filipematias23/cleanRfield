@@ -358,10 +358,10 @@ EX1.B<-bufferField(shape = EX1.Shape, value = -5)
 * Making buffering and automatic filtering at the same time (Shapefile + Data).
 
 ```r
-# Buffer of -0.0002 (Unprojected Data) and -5 (Projected Data):
+# Buffer of -15 metres:
 EX1.B<-bufferField(shape = EX1.Shape,
                    field = EX1,
-                   value = -0.0002) # Attention: for projected data use 'value=-5' (e.g., +units=m or +units=us-ft).
+                   value = -15) # Attention: check your units before assigning "value."
 ```
 
 <p align="center">
