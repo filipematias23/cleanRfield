@@ -1,6 +1,6 @@
 Package: cleanRfield
 Title: A tool for cleaning and filtering data spatial points from agricultural field trials
-Version: 0.0.2
+Version: 2.0.0
 Authors@R: 
     c(person(given = "Filipe",family = "Matias",role = c("cre", "aut"),email = "filipematias23@gmail.com"),
 		person("Hunter","Smith",role = "aut",email = "huntersmith@ufl.edu"))
