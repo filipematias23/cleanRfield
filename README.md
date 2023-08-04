@@ -15,37 +15,37 @@
 
 ## Resources
   
-[Installation](#Instal)
+[Installation](#instal)
 
-[1. First steps](#P1)
+[1. First steps](#p1)
 
-[2. Cropping or selecting regions](#P2)
+[2. Cropping or selecting regions](#p2)
 
-[3. Sampling point data](#P3)
+[3. Sampling point data](#p3)
 
-[4. Making rasters](#P4)
+[4. Making rasters](#p4)
 
-[5. Building shape boundaries](#P5)
+[5. Building shape boundaries](#p5)
 
-[6. Buffering the field boundaries](#P6)
+[6. Buffering the field boundaries](#p6)
 
-[7. Filtering using data values](#P7)
+[7. Filtering using data values](#p7)
 
-[8. Filtering using standard deviation values](#P8)
+[8. Filtering using standard deviation values](#p8)
 
-[9. Evaluating multiple fields on parallel](#P9)
+[9. Evaluating multiple fields on parallel](#p9)
 
-[10. Making Maps](#P10)
+[10. Making Maps](#p10)
 
-[11. Saving files](#P11)
+[11. Saving files](#p11)
 
-[12. Working with .csv or .txt files](#P12)
+[12. Working with .csv or .txt files](#p12)
 
-[13. Interpolating yield maps](#P13)
+[13. Interpolating yield maps](#p13)
 
-[Contact](#PC)
+[Contact](#pC)
 
-<div id="Instal" />
+<div id="instal" />
 
 ---------------------------------------------
 
@@ -70,7 +70,7 @@ devtools::install_github("filipematias23/cleanRfield")
 
 [Menu](#menu)
 
-<div id="P1" />
+<div id="p1" />
 
 ---------------------------------------------
 
@@ -111,7 +111,7 @@ par(mfrow=c(1,1))
 
 [Menu](#menu)
 
-<div id="P2" />
+<div id="p2" />
 
 ---------------------------------------------
 #### 2. Cropping or selecting targeted field 
@@ -166,7 +166,7 @@ EX1.C<-cropField(field = EX1, nPolygon = 1, nPoint = 4)
 
 [Menu](#menu)
 
-<div id="P3" />
+<div id="p3" />
 
 ---------------------------------------------
 
@@ -203,7 +203,7 @@ EX1.S<-sampleField(field = EX1,shape = EX1.Shape, size = 0.1)
 
 [Menu](#menu)
 
-<div id="P4" />
+<div id="p4" />
 
 ---------------------------------------------
 
@@ -272,7 +272,7 @@ par(mfrow=c(1,1))
 
 [Menu](#menu)
 
-<div id="P5" />
+<div id="p5" />
 
 ---------------------------------------------
 
@@ -344,7 +344,7 @@ plot(EX1.P)
 
 [Menu](#menu)
 
-<div id="P6" />
+<div id="p6" />
 
 ---------------------------------------------
 
@@ -386,7 +386,7 @@ EX1.B<-bufferField(shape = EX1.Shape,
 
 [Menu](#menu)
 
-<div id="P7" />
+<div id="p7" />
 
 ---------------------------------------------
 
@@ -463,7 +463,7 @@ EX1.F<-filterField(field = EX1,
 
 [Menu](#menu)
 
-<div id="P8" />
+<div id="p8" />
 
 ---------------------------------------------
 
@@ -523,7 +523,7 @@ EX1.SD<-sdField(field = EX1,
 
 [Menu](#menu)
 
-<div id="P9" />
+<div id="p9" />
 
 ---------------------------------------------
 
@@ -662,7 +662,7 @@ plot(NewField, add=T, col="gold4",pch=20,cex=0.5)
 
 [Menu](#menu)
 
-<div id="P10" />
+<div id="p10" />
 
 ---------------------------------------------
 
@@ -717,7 +717,7 @@ ggplot() +
 
 [Menu](#menu)
 
-<div id="P11" />
+<div id="p11" />
 
 ---------------------------------------------
 
@@ -738,7 +738,7 @@ EX1.S.5pct <- vect("EX1.5percent.shp") # Reading the saved point file.
 ```
 [Menu](#menu)
 
-<div id="P12" />
+<div id="p12" />
 
 ---------------------------------------------
 
@@ -765,7 +765,7 @@ crs(SpatialDF)
 
 [Menu](#menu)
 
-<div id="P13" />
+<div id="p13" />
 
 ---------------------------------------------
 #### 13. Interpolating yield maps
@@ -946,7 +946,7 @@ tm_shape(kriged_masked) +
 
 [Menu](#menu)
 
-<div id="PC" />
+<div id="pC" />
 
 ---------------------------------------------
 
